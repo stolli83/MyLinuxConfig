@@ -1,6 +1,7 @@
 # MyLinuxConfig
 
 ## Reference
+- Origin: [Manjaro with btrfs-luks full disk encryption including /boot and auto-snapshots with Timeshift (in-progress)](https://mutschler.eu/linux/install-guides/manjaro-btrfs/)
 - Desktop theming: This i3wm is a configuration Folk of [My Manjaro i3 setup](https://confluence.jaytaala.com/display/TKB/My+Manjaro+i3+setup)
 - ZSH config: [Powerlevel10k](https://github.com/romkatv/powerlevel10k)
 
