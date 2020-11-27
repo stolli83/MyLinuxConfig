@@ -1,0 +1,67 @@
+#!/bin/bash
+######################################################################
+#
+# bildschirm
+# Bildschirme/Beamer steuern und verwalten
+#
+# Copyright 2011 Emanuel Duss
+# Licensed under GNU General Public License
+#
+# 2011-07-26; Emanuel Duss; Erste Version
+# 2012-08-26; Emanuel Duss; $CLONERES automatisch bestimmen
+#
+######################################################################
+
+######################################################################
+# Variabeln
+INTERN="eDP1"
+EXTERN="DP2-1"
+
+######################################################################
+# Funktionen
+
+PrintUsage(){
+cat << EOI
+Usage:
+ bildschirm < modes | intern | extern | clone | extend >
+
+Optionen:
+  modes    Moegliche Modes ausgeben
+  intern   Nur internen Bildschirm verwenden
+  extern   Nur externer Bildschirm verwenden
+  clone    Gleiche Ausgabe auf beiden Bildschirmen
+  extend   Bild auf externem Bildschirm erweitern
+
+EOI
+}
+
+######################################################################
+# Main
+case $1 in
+  modes)
+    xrandr -q
+    ;;
+  intern)
+    xrandr --output eDP1 --primary --mode 2560x1440 --pos 0x0 --rotate normal --output DP1 --off --output DP2 --off --output DP2-1 --off --output DP2-2 --off --output DP2-3 --off --output HDMI1 --off --output HDMI2 --off --output VIRTUAL1 --off
+    conky -c ~/.config/conky
+    conky -c ~/.config/conky_shortcuts
+    ;;
+  extern)
+    xrandr --output eDP1 --off --output DP1 --off --output DP2 --off --output DP2-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output DP2-2 --off --output DP2-3 --off --output HDMI1 --off --output HDMI2 --off --output VIRTUAL1 --off
+    conky -c ~/.config/conky
+    conky -c ~/.config/conky_shortcuts    
+    ;;
+  clone)
+    CLONERES=`xrandr --query | awk '/^ *[0-9]*x[0-9]*/{ print $1 }' | sort -n | uniq -d | tail -1`
+    xrandr --output $INTERN --mode $CLONERES --output $EXTERN --same-as $INTERN --mode $CLONERES
+    ;;
+  extend)
+    xrandr --output $INTERN --auto --output $EXTERN --auto --right-of $INTERN
+    # xrandr --output $EXTERN --mode $EXTRES --pos 1280x0 --output $INTERN --mode $INTRES --pos 0x400
+    ;;
+  *)
+    PrintUsage
+    ;;
+esac
+
+# EOF
