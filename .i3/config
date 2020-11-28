@@ -81,20 +81,8 @@ bindsym $mod_next+d exec --no-startup-id "rofi -show-icons -modi windowcd,window
 bindsym $mod_next+Return exec --no-startup-id "rofi -show-icons -modi windowcd,window,drun -show drun"
 bindsym $mod_next+Tab exec --no-startup-id "rofi -show-icons -modi windowcd,window,drun -show window"
 bindsym $mod+n exec --no-startup-id nautilus
-bindsym $mod+BackSpace exec --no-startup-id chromium
-
-# launch categorized menu
+bindsym $mod+BackSpace exec --no-startup-id brave
 bindsym $mod_next+f exec --no-startup-id morc_menu
-
-# Increase/decrease sink volume 1
-bindsym $mod+F1 exec amixer -qD pulse set Master toggle; exec notify-send 'sound toggled'
-bindsym $mod+F2 exec amixer -qc 0 set Master 2db-; exec notify-send 'volume decreased'
-bindsym $mod+F3 exec amixer -qc 0 set Master 2db+; exec notify-send 'volume increased'
-
-# Screen brightness controls
-#bindsym $mod+F8 exec sudo xbacklight -10
-bindsym $mod+F8 exec "sleep 1; xset dpms force off"
-bindsym $mod+F9 exec sudo xbacklight +10
 
 # focus_follows_mouse no
 
