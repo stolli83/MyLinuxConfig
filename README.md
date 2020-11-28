@@ -9,3 +9,11 @@
 ## Modifications
 In first step I just modified the .i3/config for my needs.
 
+## Installation
+- (1)
+
+
+- (2)
+
+
+- (3)
